@@ -6,7 +6,9 @@ def home_page(request):
     return render(request,'index.html')
 
 def about_page(request):
-    return render(request,'about.html')
+    features = range(1, 5)  # اعداد 1 تا 4
+    return render(request, 'about.html', {'features': features})
+
 
 def countent_page(request):
     return render(request,'countent.html')
