@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-5z4m$%bdum+kqtqi_c)m=v_wa^ys$&xhgv&3vnbtu!0a2jj9l!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -114,16 +114,22 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
+import os
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'static' / 'statics'
 
-MEDIA_URL = '/media/'   # ⚠️ حتماً این باشد!
+# محل فایل‌های استاتیک در زمان توسعه (که هم‌اکنون داری)
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+
+# فقط زمانی که بخوای collectstatic بزنی برای سرور تولیدی
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-STATICFILES_DIRS = [
-    BASE_DIR / 'statics',
-]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
